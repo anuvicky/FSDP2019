@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu May 16 04:32:08 2019
+
+@author: Anupam Sharma
+"""
+"""
+
+Code Challenge 1
+Write a python code to insert records to a mongo/sqlite/MySQL database 
+named db_University for 10 students with fields like 
+Student_Name, Student_Age, Student_Roll_no, Student_Branch.
+"""
+import sqlite3
+from pandas import DataFrame
+conn =sqlite3.connect('student.db')
+c = conn.cursor()
+c.execute("""CREATE TABLE student(
+        student_name TEXT,
+        student_age INTEGER,
+        student_roll_no INTEGER,
+        student_branch TEXT
+        )""")
+c.execute("INSERT INTO student VALUES ('anupam',21,'12a','cse')")
+c.execute("INSERT INTO student VALUES ('digv',22,'1v6','cse')")
+c.execute("INSERT INTO student VALUES ('hrshit',23,'23e','cse')")
+c.execute("INSERT INTO student VALUES ('atul',20,'12s','cse')")
+c.execute("INSERT INTO student VALUES ('sourab',19,'12d','cse')")
+c.execute("INSERT INTO student VALUES ('tapaan',03,'12g','cse')")
+c.execute("INSERT INTO student VALUES ('vijay',11,'12h','cse')")
+c.execute("INSERT INTO student VALUES ('vikas',99,'12j','cse')")
+c.execute("INSERT INTO student VALUES ('khusboo',09,'12k','cse')")
+c.execute("INSERT INTO student VALUES ('mohit',00,'12l','cse')")
+c.execute("INSERT INTO student VALUES ('sonu',86,'12n','cse')")
+c.execute("SELECT * FROM student")
+print (c.fetchall())
+df = DataFrame(c.fetchall())
+df.columns =["student_name","student_age","student_roll_no","student_branch"]
+conn.commit()
+conn.close()
+
+
+
+
+
+
